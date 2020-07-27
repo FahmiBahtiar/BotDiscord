@@ -1,3 +1,4 @@
+const Command = require('../../handlers/command');
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 
@@ -17,14 +18,14 @@ const flags = {
 	VERIFIED_DEVELOPER: 'Verified Bot Developer'
 };
 
-module.exports ={
+module.exports = {
     name: "userinfo",
     category: "info",
-	description: "Userinfo",
-	
-    run: async(message, [target]) => {
-        let member = message.mentions.members.last() || message.guild.members.cache.get(target);
-	if (!member) member = message.member;
+    description: "Userinfo",
+
+    async run(bot, message, target) {
+console.log(target);
+        const member = message.mentions.members.last() || message.guild.members.cache.get(target[0]) || message.member; 
 		const roles = member.roles.cache
 			.sort((a, b) => b.position - a.position)
 			.map(role => role.toString())

@@ -4,17 +4,18 @@ const { utc } = require('moment');
 const os = require('os');
 const ms = require('ms');
 
-module.exports ={
+module.exports = {
     name: "botinfo",
     category: "info",
-    description: "Get the oldest account creation date in the guild!",
-	run(message,bot) {
+    description: "Userinfo",
+
+    async run(bot, message, target) {
 		const core = os.cpus()[0];
 		const embed = new MessageEmbed()
-			.setThumbnail(bot.guilds.cache.displayAvatarURL())
+			.setThumbnail(this.bot.user.displayAvatarURL())
 			.setColor(message.guild.me.displayHexColor || 'BLUE')
 			.addField('General', [
-				`**❯ Client:** ${user.tag} (${this.client.user.id})`,
+				`**❯ Client:** ${this.client.user.tag} (${this.client.user.id})`,
 				`**❯ Commands:** ${this.client.commands.size}`,
 				`**❯ Servers:** ${this.client.guilds.cache.size.toLocaleString()} `,
 				`**❯ Users:** ${this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`,
